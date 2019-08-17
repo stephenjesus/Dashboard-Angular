@@ -1,0 +1,14 @@
+.newcard {
+    padding: 1rem 1.5rem;
+}
+.text-muted {
+    color: #8898aa!important;
+}
+.text-uppercase {
+    font-size: .8125rem;
+    text-transform: uppercase!important;
+}
+.countuse {
+    font-size: 1.25rem;
+    font-weight: 600!important;
+}

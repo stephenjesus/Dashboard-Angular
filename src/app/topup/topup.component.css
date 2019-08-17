@@ -1,0 +1,51 @@
+.coflex {
+    display: flex;
+    flex-direction: column;
+}
+.comlabel  {
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 15px;
+    font-family: Georgia,Times,serif;
+  }
+  .head3 {
+    font-size: 20px;
+    text-align: center;
+  }
+  .mainform {
+    margin: auto 25%;
+    margin-bottom: 5%;
+  }
+  .err {
+    font-size: 13px;
+    color: #a94442;
+    padding-top: 4px;
+   }
+   .btndiv {
+    text-align: center;
+    margin-top: 5%;
+   }
+   .topupbtn {
+    border: none;
+    height: 30px;
+    border-radius: 6px;
+    width: 138px;
+    background: #033C73;
+    color: #fff;
+    font-size: 13px;
+    cursor: pointer;
+   }
+  .inputbox {
+    width: 100%;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }

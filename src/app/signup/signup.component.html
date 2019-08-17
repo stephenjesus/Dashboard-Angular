@@ -1,0 +1,177 @@
+<div>
+  <h3 class="head"> Online FASTag Registration Form For Only FASTag Ordered Customer. </h3>
+  <form [formGroup]="curlForm" (ngSubmit)="onSubmit()">
+    <div class="per-div">
+      <p class="commar maintitle"> Personal Information </p>
+      <div class="flex commar">
+        <div class="innerflex">
+          <span class="comlabel"> First Name <span class="star"> * </span> </span>
+          <input type="string" formControlName="firstname" class="inputbox">
+
+          <div class="err" *ngIf="curlForm.get('firstname').touched && curlForm.get('firstname').hasError('required')">
+            First Name is required
+          </div>
+
+        </div>
+        <div class="innerflex">
+          <span class="comlabel"> Last Name <span class="star"> * </span> </span>
+          <input type="string" formControlName="lastname" class="inputbox">
+          <div class="err" *ngIf="curlForm.get('lastname').hasError('required') && curlForm.get('lastname').touched">
+            Last Name is required
+          </div>
+        </div>
+      </div>
+
+      <div class="flex commar">
+        <div class="innerflex">
+          <span class="comlabel"> Mobile Number <span class="star"> * </span> </span>
+          <input type="string" formControlName="mobile" class="inputbox">
+          <div class="err" *ngIf="curlForm.get('mobile').hasError('required') && curlForm.get('mobile').touched">
+            Mobile Number is required
+          </div>
+        </div>
+        <div class="innerflex">
+          <span class="comlabel"> Email <span class="star"> * </span> </span>
+          <input type="string" formControlName="email" class="inputbox">
+          <div class="err" *ngIf="curlForm.get('email').hasError('required') && curlForm.get('email').touched">
+            Email is required
+          </div>
+        </div>
+      </div>
+
+      <div class="flex commar">
+        <div class="innerflex">
+          <span class="comlabel"> Date of Birth <span class="star"> * </span> </span>
+          <input type="date" formControlName="dob" data-provide="datepicker" class="inputbox">
+          <div class="err" *ngIf="curlForm.get('dob').hasError('required') && curlForm.get('dob').touched">
+            Date of Birth is required
+          </div>
+        </div>
+        <div class="innerflex">
+          <span class="comlabel"> Full Address <span class="star"> * </span> </span>
+          <input type="string" formControlName="address" class="inputbox">
+          <div class="err" *ngIf="curlForm.get('address').hasError('required') && curlForm.get('address').touched">
+             Address is required
+          </div>
+        </div>
+      </div>
+
+
+      <div class="commar mainradio">
+        <div class="innerpin">
+          <span class="comlabel"> Postal Pin Code <span class="star"> * </span> </span>
+          <input type="string" formControlName="pincode" data-provide="datepicker" class="inputbox">
+          <div class="err" *ngIf="curlForm.get('pincode').hasError('required') && curlForm.get('pincode').touched">
+            Postal Pin Code is required
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="per-div">
+      <p class="commar maintitle"> Vehicle information </p>
+      <div class="flex commar">
+        <div class="innerflex">
+          <span class="comlabel"> Vehicle Number <span class="star"> * </span> </span>
+          <input type="string" formControlName="vno" class="inputbox">
+          <div class="err" *ngIf="curlForm.get('vno').hasError('required') && curlForm.get('vno').touched">
+            Vehicle Number is required
+          </div>
+        </div>
+        <div class="innerflex">
+          <span class="comlabel"> Chassis Number <span class="star"> * </span> </span>
+          <input type="string" formControlName="cno" class="inputbox">
+          <div class="err" *ngIf="curlForm.get('cno').hasError('required') && curlForm.get('cno').touched">
+            Chassis Number is required
+          </div>
+        </div>
+      </div>
+      <div class="flex commar">
+        <div class="innerflex">
+          <span class="comlabel"> Engine Number <span class="star"> * </span> </span>
+          <input type="string" formControlName="eno" class="inputbox">
+          <div class="err" *ngIf="curlForm.get('eno').hasError('required') && curlForm.get('eno').touched">
+            Engine Number is required
+          </div>
+        </div>
+        <div class="innerflex">
+          <span class="comlabel"> Select Vehicle Type <span class="star"> * </span> </span>
+          <select id="vfb-field-65" formControlName="vtype" class="inputbox" placeholder="" required="required" name="vfb-field-65"
+            data-vfb-id="25">
+            <option value="Car / Jeep / Van">Car / Jeep / Van</option>
+            <option value="Light Commercial Vehicle 2 Axle">Light Commercial Vehicle 2 Axle</option>
+            <option value="Mini Bus">Mini Bus</option>
+            <option value="Bus 2 Axle">Bus 2 Axle</option>
+            <option value="Truck 2 Axle">Truck 2 Axle</option>
+            <option value="Truck 3 Axle">Truck 3 Axle</option>
+            <option value="Truck 4 Axle">Truck 4 Axle</option>
+            <option value="Truck 5 Axle">Truck 5 Axle</option>
+          </select>
+          <div class="err" *ngIf="curlForm.get('vtype').hasError('required') && curlForm.get('vtype').touched">
+            Vehicle Type is required
+          </div>
+        </div>
+      </div>
+      <div>
+
+        <div class="mainradio commar">
+          <div class="comlabel"> Select Vehicle Category <span class="star"> * </span> </div>
+          <div class="vfb-radio"><label><input id="vfb-field-36-0" formControlName="vcate" class="labelmar" placeholder=""
+                required="required" type="radio" name="vfb-field-36" value="Non-Commercial" data-vfb-multiple="vfb-field-36">Non-Commercial</label>
+          </div>
+          <div class="vfb-radio"><label><input id="vfb-field-36-1" formControlName="vcate" class="labelmar" placeholder=""
+                required="required" type="radio" name="vfb-field-36" value="Commercial" data-vfb-multiple="vfb-field-36">Commercial</label>
+          </div>
+          <div class="err" *ngIf="curlForm.get('vcate').hasError('required') && curlForm.get('vcate').touched">
+            Vehicle Category is required
+          </div>
+        </div>
+      </div>
+      <div class="flex commar">
+        <div class="innerflex">
+          <span class="comlabel"> Vehicle RC <span class="star"> * </span> </span>
+          <input type="file" formControlName="vrc" class="inputbox">
+          <div class="err" *ngIf="curlForm.get('vrc').hasError('required') && curlForm.get('vrc').touched">
+            Vehicle RC is required
+          </div>
+        </div>
+        <div class="innerflex">
+          <span class="comlabel"> Upload ID Proof <span class="star"> * </span> </span>
+          <input type="file" formControlName="idproof" class="inputbox">
+          <span class="dot"> Pan Card, Aadhaar Card, Driving License , Voter ID, Passport any one
+          </span>
+          <div class="err" *ngIf="curlForm.get('idproof').hasError('required') && curlForm.get('idproof').touched">
+            ID Proof is required
+          </div>
+        </div>
+      </div>
+      <div class="flex commar">
+        <div class="innerflex">
+          <span class="comlabel"> Upload Address Proof <span class="star"> * </span> </span>
+          <input type="file" formControlName="addressproof" class="inputbox">
+          <span class="dot"> Aadhaar Card, Driving License, Voter ID, Passport
+          </span>
+          <div class="err" *ngIf="curlForm.get('addressproof').hasError('required') && curlForm.get('addressproof').touched">
+            Proof is required
+          </div>
+        </div>
+        <div class="innerflex">
+          <span class="comlabel"> FASTAG ORDER ID <span class="star"> * </span> </span>
+          <input type="string" formControlName="fasttag" class="inputbox">
+          <span class="dot"> After purchasing the FASTag . You will Receive ORDER ID.
+          </span>
+          <div class="err" *ngIf="curlForm.get('fasttag').hasError('required') && curlForm.get('fasttag').touched">
+            FASTAG ORDER ID is required
+          </div>
+        </div>
+      </div>
+      <div>
+        <button type="submit" class="regbtn"> Register </button>
+        <!-- <button type="submit" class="regbtn"> -->
+          <a class="signin" routerLink="/pages/login-boxed">Sign in</a>
+        <!-- </button> -->
+      </div>
+    </div>
+  </form>
+
+</div>

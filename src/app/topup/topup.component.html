@@ -1,0 +1,72 @@
+<div class="mainform">
+    <h3 class="head3"> Request Top Up </h3>
+    <form [formGroup]="curlForm" (ngSubmit)="onSubmit()">
+        <div class="coflex">
+            <span class="comlabel"> Payment Method <span class="star"> * </span> </span>
+            <select id="vfb-field-65" formControlName="paytype" class="inputbox" placeholder="" required="required" name="vfb-field-65"
+                data-vfb-id="25">
+                <option value="Car / Jeep / Van">Car / Jeep / Van</option>
+                <option value="Light Commercial Vehicle 2 Axle">Light Commercial Vehicle 2 Axle</option>
+                <option value="Mini Bus">Mini Bus</option>
+                <option value="Bus 2 Axle">Bus 2 Axle</option>
+                <option value="Truck 2 Axle">Truck 2 Axle</option>
+                <option value="Truck 3 Axle">Truck 3 Axle</option>
+                <option value="Truck 4 Axle">Truck 4 Axle</option>
+                <option value="Truck 5 Axle">Truck 5 Axle</option>
+            </select>
+        </div>
+        <div>
+            <span class="comlabel"> Select Services <span class="star"> * </span> </span>
+            <select id="vfb-field-65" formControlName="servicetype" class="inputbox" placeholder="" required="required" name="vfb-field-65"
+                data-vfb-id="25">
+                <option value="Car / Jeep / Van">Car / Jeep / Van</option>
+                <option value="Light Commercial Vehicle 2 Axle">Light Commercial Vehicle 2 Axle</option>
+                <option value="Mini Bus">Mini Bus</option>
+                <option value="Bus 2 Axle">Bus 2 Axle</option>
+                <option value="Truck 2 Axle">Truck 2 Axle</option>
+                <option value="Truck 3 Axle">Truck 3 Axle</option>
+                <option value="Truck 4 Axle">Truck 4 Axle</option>
+                <option value="Truck 5 Axle">Truck 5 Axle</option>
+            </select>
+        </div>
+        <div class="flex commar">
+            <div class="innerflex">
+                <span class="comlabel"> Bank txnid/ Ref No <span class="star"> * </span> </span>
+                <input type="string" formControlName="refno" class="inputbox">
+                <div class="err" *ngIf="curlForm.get('refno').hasError('required') && curlForm.get('refno').touched">
+                    Vehicle Number is required
+                </div>
+            </div>
+            <div class="innerflex">
+                <span class="comlabel"> Date of Deposit <span class="star"> * </span> </span>
+                <input type="date" formControlName="date" class="inputbox">
+                <div class="err" *ngIf="curlForm.get('date').hasError('required') && curlForm.get('date').touched">
+                    Chassis Number is required
+                </div>
+            </div>
+        </div>
+
+        <div class="flex commar">
+            <div class="innerflex">
+                <span class="comlabel"> Amount <span class="star"> * </span> </span>
+                <input type="number" formControlName="amount" class="inputbox">
+                <div class="err" *ngIf="curlForm.get('amount').hasError('required') && curlForm.get('amount').touched">
+                    Vehicle Number is required
+                </div>
+            </div>
+            <div class="innerflex">
+                <span class="comlabel"> Requesting for (Remarks) <span class="star"> * </span> </span>
+                <textarea style="height: 120px;" formControlName="remarks" class="inputbox"> </textarea>
+                <div class="err" *ngIf="curlForm.get('remarks').hasError('required') && curlForm.get('remarks').touched">
+                    Chassis Number is required
+                </div>
+            </div>
+        </div>
+
+        <div class="btndiv">
+            <button type="submit" class="topupbtn">REQUEST TOP UP</button>
+        </div>
+    </form>
+
+
+</div>

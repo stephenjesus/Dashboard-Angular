@@ -65,13 +65,6 @@ import {IconsComponent} from './DemoPages/Elements/icons/icons.component';
 
 // Components
 
-import {AccordionsComponent} from './DemoPages/Components/accordions/accordions.component';
-import {TabsComponent} from './DemoPages/Components/tabs/tabs.component';
-import {CarouselComponent} from './DemoPages/Components/carousel/carousel.component';
-import {ModalsComponent} from './DemoPages/Components/modals/modals.component';
-import {ProgressBarComponent} from './DemoPages/Components/progress-bar/progress-bar.component';
-import {PaginationComponent} from './DemoPages/Components/pagination/pagination.component';
-import {TooltipsPopoversComponent} from './DemoPages/Components/tooltips-popovers/tooltips-popovers.component';
 
 // Tables
 
@@ -93,6 +86,7 @@ import { TopupComponent } from './topup/topup.component';
 import { RequestComponent } from './request/request.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
+import { UserdashboardComponent } from './userdashboard/userdashboard.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -144,15 +138,6 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ListGroupsComponent,
     TimelineComponent,
 
-    // Components
-
-    AccordionsComponent,
-    TabsComponent,
-    CarouselComponent,
-    ModalsComponent,
-    ProgressBarComponent,
-    PaginationComponent,
-    TooltipsPopoversComponent,
 
     // Tables
 
@@ -172,6 +157,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RequestComponent,
     ProfileComponent,
     SignupComponent,
+    UserdashboardComponent,
   ],
   imports: [
     BrowserModule,

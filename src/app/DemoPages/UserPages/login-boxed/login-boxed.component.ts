@@ -11,5 +11,7 @@ export class LoginBoxedComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  login() {
+    
+  }
 }

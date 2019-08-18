@@ -1,0 +1,58 @@
+<div class="mainform">
+        <h3 class="head3"> Order Request </h3>
+        <form [formGroup]="curlForm" (ngSubmit)="onSubmit()">
+            <div class="coflex">
+                <span class="comlabel"> Car / Jeep / Van and similar mini light Commercial Vehicle   </span>
+                <input type="string" placeholder="Enter no of count" formControlName="refno" class="inputbox">
+            </div>
+            <div class="flex commar">
+                <div class="innerflex">
+                    <span class="comlabel"> Light Commercial Vehicle   </span>
+                    <input type="string" placeholder="Enter no of count" formControlName="refno" class="inputbox">
+                    <div class="err" *ngIf="curlForm.get('refno').hasError('required') && curlForm.get('refno').touched">
+                        Vehicle Number is required
+                    </div>
+                </div>
+                <div class="innerflex">
+                    <span class="comlabel"> Three Axle Commercial Vehicles   </span>
+                    <input type="string" placeholder="Enter no of count" formControlName="refno" class="inputbox">                    <div class="err" *ngIf="curlForm.get('date').hasError('required') && curlForm.get('date').touched">
+                        Chassis Number is required
+                    </div>
+                </div>
+            </div>
+    
+            <div class="flex commar">
+                <div class="innerflex">
+                    <span class="comlabel"> Bus/Truck   </span>
+                    <input type="string" placeholder="Enter no of count" formControlName="refno" class="inputbox">                    <div class="err" *ngIf="curlForm.get('amount').hasError('required') && curlForm.get('amount').touched">
+                        Vehicle Number is required
+                    </div>
+                </div>
+                <div class="coflex">
+                    <span class="comlabel"> 4 to 6 Axle   </span>
+                    <input type="string" placeholder="Enter no of count" formControlName="refno" class="inputbox">
+                </div>
+                <div class="coflex">
+                    <span class="comlabel"> 7 or more Axle  </span>
+                    <input type="string" placeholder="Enter no of count" formControlName="refno" class="inputbox">
+                </div>
+                <div class="coflex">
+                    <span class="comlabel"> Heavy Construction Machinery (HCM) / Earth Moving Equipment (EME)  </span>
+                    <input type="string" placeholder="Enter no of count" formControlName="refno" class="inputbox">
+                </div>
+                <div class="innerflex">
+                    <span class="comlabel"> Remarks   </span>
+                    <textarea style="height: 120px;" placeholder="Remarks" formControlName="remarks" class="inputbox"> </textarea>
+                    <div class="err" *ngIf="curlForm.get('remarks').hasError('required') && curlForm.get('remarks').touched">
+                        Chassis Number is required
+                    </div>
+                </div>
+            </div>
+    
+            <div class="btndiv">
+                <button type="submit" class="topupbtn">Submit</button>
+            </div>
+        </form>
+    
+    
+    </div>

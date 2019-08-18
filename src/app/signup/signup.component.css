@@ -118,10 +118,13 @@
   border-radius: 6px;
   cursor: pointer;
 }
+.textcenter {
+  text-align: center;
+}
   @media (max-width: 767px)
 {
   .per-div {
-margin: unset !important;
+margin: unset;
 margin-bottom: 5% !important;
 padding: 10px !important;
   }
@@ -129,4 +132,3 @@ padding: 10px !important;
     padding-left: 14px !important;
   }
 }
- 

@@ -25,15 +25,7 @@ import {ListGroupsComponent} from './DemoPages/Elements/list-groups/list-groups.
 import {TimelineComponent} from './DemoPages/Elements/timeline/timeline.component';
 import {IconsComponent} from './DemoPages/Elements/icons/icons.component';
 
-// Components
 
-import {AccordionsComponent} from './DemoPages/Components/accordions/accordions.component';
-import {TabsComponent} from './DemoPages/Components/tabs/tabs.component';
-import {CarouselComponent} from './DemoPages/Components/carousel/carousel.component';
-import {ModalsComponent} from './DemoPages/Components/modals/modals.component';
-import {ProgressBarComponent} from './DemoPages/Components/progress-bar/progress-bar.component';
-import {PaginationComponent} from './DemoPages/Components/pagination/pagination.component';
-import {TooltipsPopoversComponent} from './DemoPages/Components/tooltips-popovers/tooltips-popovers.component';
 
 // Tables
 
@@ -55,6 +47,7 @@ import { TopupComponent } from './topup/topup.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RequestComponent } from './request/request.component';
 import { SignupComponent } from './signup/signup.component';
+import { UserdashboardComponent } from './userdashboard/userdashboard.component';
 
 
 const routes: Routes = [
@@ -69,6 +62,9 @@ const routes: Routes = [
       { path: 'topup' , component : TopupComponent , data: {extraParameter: 'dashboardsMenu'}},
       { path: 'profile' , component : ProfileComponent , data: {extraParameter: 'dashboardsMenu'}},
       { path: 'request' , component : RequestComponent , data: {extraParameter: 'dashboardsMenu'}},
+      { path: 'signup' , component : SignupComponent , data: {extraParameter: 'dashboardsMenu'}},
+      { path: 'userdashboard' , component : UserdashboardComponent , data: {extraParameter: 'dashboardsMenu'}},
+
 
 
 
@@ -82,15 +78,6 @@ const routes: Routes = [
       {path: 'elements/list-group', component: ListGroupsComponent, data: {extraParameter: 'elementsMenu'}},
       {path: 'elements/timeline', component: TimelineComponent, data: {extraParameter: 'elementsMenu'}},
 
-      // Components
-
-      {path: 'components/tabs', component: TabsComponent, data: {extraParameter: 'componentsMenu'}},
-      {path: 'components/accordions', component: AccordionsComponent, data: {extraParameter: 'componentsMenu'}},
-      {path: 'components/modals', component: ModalsComponent, data: {extraParameter: 'componentsMenu'}},
-      {path: 'components/progress-bar', component: ProgressBarComponent, data: {extraParameter: 'componentsMenu'}},
-      {path: 'components/tooltips-popovers', component: TooltipsPopoversComponent, data: {extraParameter: 'componentsMenu'}},
-      {path: 'components/carousel', component: CarouselComponent, data: {extraParameter: 'componentsMenu'}},
-      {path: 'components/pagination', component: PaginationComponent, data: {extraParameter: 'componentsMenu'}},
 
       // Tables
 
@@ -118,7 +105,6 @@ const routes: Routes = [
       {path: 'pages/login-boxed', component: LoginBoxedComponent, data: {extraParameter: ''}},
       {path: 'register-boxed', component: RegisterBoxedComponent, data: {extraParameter: ''}},
       {path: 'forgot-password-boxed', component: ForgotPasswordBoxedComponent, data: {extraParameter: ''}},
-      { path: 'signup' , component : SignupComponent , data: {extraParameter: ''}},
 
     ]
   },

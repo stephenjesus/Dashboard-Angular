@@ -1,5 +1,5 @@
 <div>
-  <h3 class="head"> Online FASTag Registration Form For Only FASTag Ordered Customer. </h3>
+  <h3 class="head"> New Registration Form </h3>
   <form [formGroup]="curlForm" (ngSubmit)="onSubmit()">
     <div class="per-div">
       <p class="commar maintitle"> Personal Information </p>
@@ -145,7 +145,7 @@
           </div>
         </div>
       </div>
-      <div class="flex commar">
+      <div class="mainradio commar">
         <div class="innerflex">
           <span class="comlabel"> Upload Address Proof <span class="star"> * </span> </span>
           <input type="file" formControlName="addressproof" class="inputbox">
@@ -155,7 +155,7 @@
             Proof is required
           </div>
         </div>
-        <div class="innerflex">
+        <!-- <div class="innerflex">
           <span class="comlabel"> FASTAG ORDER ID <span class="star"> * </span> </span>
           <input type="string" formControlName="fasttag" class="inputbox">
           <span class="dot"> After purchasing the FASTag . You will Receive ORDER ID.
@@ -163,12 +163,12 @@
           <div class="err" *ngIf="curlForm.get('fasttag').hasError('required') && curlForm.get('fasttag').touched">
             FASTAG ORDER ID is required
           </div>
-        </div>
+        </div> -->
       </div>
-      <div>
+      <div class="textcenter">
         <button type="submit" class="regbtn"> Register </button>
         <!-- <button type="submit" class="regbtn"> -->
-          <a class="signin" routerLink="/pages/login-boxed">Sign in</a>
+          <!-- <a class="signin" routerLink="/pages/login-boxed">Sign in</a> -->
         <!-- </button> -->
       </div>
     </div>

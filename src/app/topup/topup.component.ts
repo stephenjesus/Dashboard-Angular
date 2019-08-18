@@ -20,7 +20,7 @@ export class TopupComponent implements OnInit {
   ngOnInit() {
     this.curlForm = new FormGroup({
       paytype: new FormControl(null, Validators.required),
-      servicetype: new FormControl(null, Validators.required),
+      // servicetype: new FormControl(null, Validators.required),
       remarks: new FormControl(null),
       amount: new FormControl(null, Validators.required),
       date: new FormControl(null, Validators.required),
@@ -29,7 +29,7 @@ export class TopupComponent implements OnInit {
   }
   touch() {
     this.curlForm.get('paytype').markAsTouched();
-    this.curlForm.get('servicetype').markAsTouched();
+    // this.curlForm.get('servicetype').markAsTouched();
     this.curlForm.get('remarks').markAsTouched();
     this.curlForm.get('amount').markAsTouched();
     this.curlForm.get('date').markAsTouched();

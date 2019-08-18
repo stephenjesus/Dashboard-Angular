@@ -8,7 +8,9 @@
           <div class="col-lg-3 order-lg-2">
             <div class="card-profile-image">
               <a href="javascript:void(0)">
-                <img src={{defaultimg}} class="rounded-circle">
+                  <input type="file" accept="image/*" (change)="logoUpload($event)" class="hide_button" #fileInput>
+                <img src={{defaultimg}} class="rounded-circle" (click)="fileInput.click()">
+                <i class="icon-camera"></i>
               </a>
             </div>
           </div>

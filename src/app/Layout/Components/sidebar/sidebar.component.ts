@@ -2,7 +2,8 @@ import {Component, HostListener, OnInit} from '@angular/core';
 import {ThemeOptions} from '../../../theme-options';
 import {select} from '@angular-redux/store';
 import {Observable} from 'rxjs';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import { ProductService } from '../../../product.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,7 +12,8 @@ import {ActivatedRoute} from '@angular/router';
 export class SidebarComponent implements OnInit {
   public extraParameter: any;
 
-  constructor(public globals: ThemeOptions, private activatedRoute: ActivatedRoute) {
+  constructor(public globals: ThemeOptions, private activatedRoute: ActivatedRoute ,
+              private router: Router , public productService: ProductService) {
 
   }
 
@@ -21,7 +23,8 @@ export class SidebarComponent implements OnInit {
   private innerWidth: number;
   activeId = 'dashboardsMenu';
 
-  isAdmin = true;
+  isAdmin = false;
+  userData;
 
   toggleSidebar() {
     this.globals.toggleSidebar = !this.globals.toggleSidebar;
@@ -32,6 +35,17 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (localStorage.getItem('token')) {
+    const parseData = localStorage.getItem('token');
+    this.userData = JSON.parse(parseData);
+    if (this.userData && this.userData.userType === 0) {
+      this.isAdmin = true;
+    } else {
+      this.isAdmin = false;
+    }
+    } else {
+      this.router.navigate(['/pages/login-boxed']);
+    }
     setTimeout(() => {
       this.innerWidth = window.innerWidth;
       if (this.innerWidth < 1200) {

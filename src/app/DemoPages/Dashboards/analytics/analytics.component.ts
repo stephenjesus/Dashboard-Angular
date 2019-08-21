@@ -14,15 +14,23 @@ export class AnalyticsComponent implements OnInit {
   subheading = 'This is an example dashboard created using build-in elements and components.';
   icon = 'pe-7s-graph3 icon-gradient bg-tempting-azure';
   count = 545;
+  userData;
+  AllUser;
 constructor(private router: Router , public productService: ProductService) {
   if (localStorage.getItem('token')) {
-  } else {
-    // this.router.navigate(['/pages/login-boxed']);
-  }
+    const parseData = localStorage.getItem('token');
+    this.userData = JSON.parse(parseData);
+    if (this.userData && this.userData.userType === 0) {
+    } else {
+      this.router.navigate(['userdashboard']);
+    }
+    } else {
+      this.router.navigate(['/pages/login-boxed']);
+    }
 }
   ngOnInit() {
     this.productService.getAllUsers().subscribe((res) => {
-      console.log(res, 'res');
+      this.AllUser = res;
     });
   }
 

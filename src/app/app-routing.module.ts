@@ -108,7 +108,7 @@ const routes: Routes = [
 
     ]
   },
-  {path: '**', redirectTo: ''}
+  {path: '**', redirectTo: 'pages/login-boxed'}
 ];
 
 @NgModule({

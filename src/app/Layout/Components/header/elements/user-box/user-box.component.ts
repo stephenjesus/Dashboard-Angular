@@ -17,6 +17,7 @@ export class UserBoxComponent implements OnInit {
   }
   logout() {
     this.router.navigate(['/pages/login-boxed']);
+    localStorage.clear();
   }
   goprofile() {
     this.router.navigate(['/profile']);

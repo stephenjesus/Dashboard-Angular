@@ -3,7 +3,10 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  HOST : {
+    link: 'https://us-central1-online-management-a7e84.cloudfunctions.net/api'
+  }
 };
 
 /*

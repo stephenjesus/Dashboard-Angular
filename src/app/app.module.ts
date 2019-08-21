@@ -87,6 +87,7 @@ import { RequestComponent } from './request/request.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SignupComponent } from './signup/signup.component';
 import { UserdashboardComponent } from './userdashboard/userdashboard.component';
+import { GrowlShowComponent } from './growlcompoent/growl';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -152,6 +153,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 
     ControlsComponent,
     LayoutComponent,
+    GrowlShowComponent,
 
     TopupComponent,
     RequestComponent,

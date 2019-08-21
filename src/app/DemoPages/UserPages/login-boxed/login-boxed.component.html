@@ -12,7 +12,7 @@
             </div>
             <div id="exampleInputGroup1" role="group" aria-describedby="exampleInputGroup1__BV_description_"
                  class="form-group">
-              <div><input id="exampleInput1" type="email" placeholder="Enter email..." required="required"
+              <div><input id="exampleInput1" type="email" [(ngModel)]="email" placeholder="Enter email..." required="required"
                           aria-required="true" class="form-control"
                           aria-describedby="exampleInputGroup1__BV_description_">
                 <small tabindex="-1" id="exampleInputGroup1__BV_description_" class="form-text text-muted">We'll never
@@ -21,7 +21,7 @@
               </div>
             </div>
             <div id="exampleInputGroup2" role="group" class="form-group">
-              <div><input id="exampleInput2" type="password" placeholder="Enter password..." required="required"
+              <div><input id="exampleInput2" [(ngModel)]="password" type="password" placeholder="Enter password..." required="required"
                           aria-required="true" class="form-control"></div>
             </div>
             <div class="custom-control custom-checkbox"><input id="exampleCheck" type="checkbox" name="check"
@@ -34,6 +34,7 @@
             <h6 class="mb-0">
               No account?
               <a class="text-primary">Register Now</a></h6>
+              <p *ngIf="errMsg" class="errMsg"> {{errMsg}}</p>
             </div>
           <div class="modal-footer clearfix">
             <div class="float-left"><a routerLink="/forgot-password-boxed" class="btn-lg btn btn-link">Recover

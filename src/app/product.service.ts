@@ -8,7 +8,7 @@ import { environment } from '../environments/environment';
   providedIn: 'root'
 })
 export class ProductService {
-//   api_url = environment.HOST.link;
+  api_url = environment.HOST.link;
 
 
   constructor(private http: HttpClient) {
@@ -16,6 +16,15 @@ export class ProductService {
 
    }
    getAllUsers() {
-    return this.http.get(`https://us-central1-online-management-a7e84.cloudfunctions.net/api/getAllUser` , { responseType: 'text'});
+    return this.http.get(this.api_url + `/getAllUser`);
+  }
+  login(payload) {
+    return this.http.post(this.api_url + `/logIn` , payload);
+  }
+  addTopUpRequest(payload) {
+    return this.http.post(this.api_url + `/addTopUpRequest` , payload);
+  }
+  getCustomerDashboard(payload) {
+    return this.http.post(this.api_url +  `/getCustomerDashboard` , payload);
   }
 }

@@ -1,7 +1,9 @@
 <div class="mainform">
+
     <h3 class="head3"> Request Top Up </h3>
     <form [formGroup]="curlForm" (ngSubmit)="onSubmit()">
         <div class="coflex">
+                <app-growl-show #growl></app-growl-show>
             <span class="comlabel"> Payment Method <span class="star"> * </span> </span>
             <select id="vfb-field-65" formControlName="paytype" class="inputbox" placeholder="" required="required" name="vfb-field-65"
                 data-vfb-id="25">

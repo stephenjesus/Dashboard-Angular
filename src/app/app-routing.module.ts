@@ -90,6 +90,7 @@ const routes: Routes = [
       // Forms Elements
 
       {path: 'forms/controls', component: ControlsComponent, data: {extraParameter: 'formElementsMenu'}},
+      
       {path: 'forms/layouts', component: LayoutComponent, data: {extraParameter: 'formElementsMenu'}},
 
     ]

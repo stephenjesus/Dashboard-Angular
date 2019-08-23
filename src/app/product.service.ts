@@ -36,4 +36,7 @@ export class ProductService {
   updateUserProfile(payload) {
     return this.http.post(this.api_url + '/updateUserProfile', payload);
   }
+  provideBigFormData(payload) {
+    return this.http.post(this.api_url + '/provideBigFormData', payload);
+  }
 }

@@ -1,6 +1,6 @@
 <div>
   <h3 class="head"> New Registration Form </h3>
-  <form [formGroup]="curlForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="curlForm" (ngSubmit)="uploadBigFormData()">
     <div class="per-div">
       <p class="commar maintitle"> Personal Information </p>
       <div class="flex commar">
@@ -116,21 +116,21 @@
 
         <div class="mainradio commar">
           <div class="comlabel"> Select Vehicle Category <span class="star"> * </span> </div>
-          <div class="vfb-radio"><label><input id="vfb-field-36-0" formControlName="vcate" class="labelmar" placeholder=""
-                required="required" type="radio" name="vfb-field-36" value="Non-Commercial" data-vfb-multiple="vfb-field-36">Non-Commercial</label>
+          <div class="vfb-radio"><label><input id="vfb-field-36-0" [ngModelOptions]="{standalone: true}" [(ngModel)]="vcate" class="labelmar" placeholder=""
+                required="required" type="radio" name="vfb-field-12" value="Non-Commercial" data-vfb-multiple="vfb-field-36">Non-Commercial</label>
           </div>
-          <div class="vfb-radio"><label><input id="vfb-field-36-1" formControlName="vcate" class="labelmar" placeholder=""
-                required="required" type="radio" name="vfb-field-36" value="Commercial" data-vfb-multiple="vfb-field-36">Commercial</label>
+          <div class="vfb-radio"><label><input id="vfb-field-36-1"  class="labelmar" placeholder=""
+                required="required" type="radio" name="vfb-field-36" value="Commercial"  [ngModelOptions]="{standalone: true}" [(ngModel)]="vcate" data-vfb-multiple="vfb-field-36">Commercial</label>
           </div>
-          <div class="err" *ngIf="curlForm.get('vcate').hasError('required') && curlForm.get('vcate').touched">
+          <!-- <div class="err" *ngIf="curlForm.get('vcate').hasError('required') && curlForm.get('vcate').touched">
             Vehicle Category is required
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="flex commar">
         <div class="innerflex">
           <span class="comlabel"> Vehicle RC <span class="star"> * </span> </span>
-          <input type="file" formControlName="vrc" class="inputbox">
+          <input type="file" (change)="imageUpload($event,'vrc')" formControlName="vrc" class="inputbox">
           <div class="err" *ngIf="curlForm.get('vrc').hasError('required') && curlForm.get('vrc').touched">
             Vehicle RC is required
           </div>

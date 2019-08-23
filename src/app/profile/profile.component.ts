@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '../product.service';
-
+import { AngularFireStorage } from '@angular/fire/storage';
+import { UploadTaskSnapshot } from '@angular/fire/storage/interfaces';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -16,9 +17,11 @@ export class ProfileComponent implements OnInit {
   dob;
   pincode;
   address;
-  userData: any;
-  constructor(private router: Router, private productService: ProductService) {
+  userData;
+
+  constructor(private router: Router, private productService: ProductService, private storage: AngularFireStorage) {
     if (localStorage.getItem('token')) {
+      this.userData = JSON.parse(localStorage.getItem('item'));
     } else {
       // this.router.navigate(['/pages/login-boxed']);
     }
@@ -34,32 +37,43 @@ export class ProfileComponent implements OnInit {
       this.lastname = data.lastName;
       this.email = data.emailId;
       this.dob = data.dob;
-      this.pincode = data.pincode;
+      this.pincode = data.postalPincode;
       this.address = data.address;
-      this.mobile = data.mobile;
+      this.mobile = data.MobileNumber;
     });
     // this.defaultimg = './assets/images/avatars/2.jpg';
   }
   logoUpload(event) {
     if (event.target.files && event.target.files[0]) {
-      const reader = new FileReader();
-      reader.onload = (e: any) => {
-        if (!this.validateUploadImage(e.target.result)) {
-        } else {
-          // const payload = new FormData();
-          // payload.append('college_company_logo', event.target.files[0]);
-          // payload.append('drive_id', this.driveData.drive_id);
-          // this.drivesService.setLogo(payload).subscribe(response => {
-          // });
-        }
-      };
-      reader.readAsDataURL(event.target.files[0]);
+      const file = event.target.files[0];
+      const filePath = 'name-your-file-path-here';
+      const ref = this.storage.ref(filePath);
+      const task = ref.put(file);
+      task.then((a: UploadTaskSnapshot) => {
+        console.log(a.ref.getDownloadURL());
+
+      }).catch((err: any) => {
+        console.log(err);
+      });
     }
   }
 
-  validateUploadImage(file) {
-    this.defaultimg = file;
-    return true;
+
+  updateUserProfile() {
+    const payload = {
+      emailId: this.userData.emailId,
+      data: {
+        firstName: this.firstname,
+        lastName: this.lastname,
+        dob: this.dob,
+        postalPincode: this.pincode,
+        address: this.address,
+        MobileNumber: this.mobile
+      }
+    };
+    this.productService.updateUserProfile(payload).subscribe((data: any) => {
+
+    });
   }
 
 }

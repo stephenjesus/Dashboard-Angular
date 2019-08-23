@@ -14,23 +14,26 @@ export class ProductService {
   constructor(private http: HttpClient) {
 
 
-   }
-   getAllUsers() {
+  }
+  getAllUsers() {
     return this.http.get(this.api_url + `/getAllUser`);
   }
   login(payload) {
-    return this.http.post(this.api_url + `/logIn` , payload);
+    return this.http.post(this.api_url + `/logIn`, payload);
   }
   addTopUpRequest(payload) {
-    return this.http.post(this.api_url + `/addTopUpRequest` , payload);
+    return this.http.post(this.api_url + `/addTopUpRequest`, payload);
   }
   getCustomerDashboard(payload) {
-    return this.http.post(this.api_url +  `/getCustomerDashboard` , payload);
+    return this.http.post(this.api_url + `/getCustomerDashboard`, payload);
   }
   addMakeOrder(payload) {
-    return this.http.post(this.api_url + '/makeOrder',payload);
+    return this.http.post(this.api_url + '/makeOrder', payload);
   }
   getUserDetail(payload) {
     return this.http.post(this.api_url + '/getUserDetail', payload);
+  }
+  updateUserProfile(payload) {
+    return this.http.post(this.api_url + '/updateUserProfile', payload);
   }
 }

@@ -4,8 +4,17 @@
 
 export const environment = {
   production: false,
-  HOST : {
+  HOST: {
     link: 'https://us-central1-online-management-a7e84.cloudfunctions.net/api'
+  },
+  firebase: {
+    apiKey: 'AIzaSyARCAFGED6HVLpqXDUPGUJ3XmC7SfmvL-Y',
+    authDomain: 'online-management-a7e84.firebaseapp.com',
+    databaseURL: 'https://online-management-a7e84.firebaseio.com',
+    projectId: 'online-management-a7e84',
+    storageBucket: 'online-management-a7e84.appspot.com',
+    messagingSenderId: '747427385558',
+    appId: '1:747427385558:web:ccf731dc2e65f663'
   }
 };
 

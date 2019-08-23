@@ -27,4 +27,10 @@ export class ProductService {
   getCustomerDashboard(payload) {
     return this.http.post(this.api_url +  `/getCustomerDashboard` , payload);
   }
+  addMakeOrder(payload) {
+    return this.http.post(this.api_url + '/makeOrder',payload);
+  }
+  getUserDetail(payload) {
+    return this.http.post(this.api_url + '/getUserDetail', payload);
+  }
 }

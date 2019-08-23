@@ -9,7 +9,7 @@ import { UploadTaskSnapshot } from '@angular/fire/storage/interfaces';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  defaultimg = `https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png`;
+  defaultimg = '`https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png`';
   firstname;
   lastname;
   email;
@@ -48,17 +48,31 @@ export class ProfileComponent implements OnInit {
       this.pincode = data.postalPincode;
       this.address = data.address;
       this.mobile = data.MobileNumber;
+      this.defaultimg = data.profilePic;
     });
     // this.defaultimg = './assets/images/avatars/2.jpg';
   }
   logoUpload(event) {
     if (event.target.files && event.target.files[0]) {
       const file = event.target.files[0];
-      const filePath = 'name-your-file-path-here';
+      const filePath = 'usersList' + '/' + this.userData.emailId.split('@')[0];
       const ref = this.storage.ref(filePath);
       const task = ref.put(file);
       task.then((a: UploadTaskSnapshot) => {
-        console.log(a.ref.getDownloadURL());
+        a.ref.getDownloadURL().then((value: any) => {
+          console.log(value);
+          this.defaultimg = value;
+          const payload = {
+            emailId: this.userData.emailId,
+            data: {
+              profilePic: value
+            }
+          };
+          this.productService.updateUserProfile(payload).subscribe((data: any) => {
+
+          });
+        });
+
 
       }).catch((err: any) => {
         console.log(err);

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { ProductService } from '../product.service';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { UploadTaskSnapshot } from '@angular/fire/storage/interfaces';
+import { resolve } from 'url';
 
 @Component({
   selector: 'app-signup',
@@ -8,8 +12,14 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class SignupComponent implements OnInit {
   curlForm: FormGroup;
-
-  constructor() { }
+  vcate: any;
+  userData: any;
+  vrc: any;
+  addressproof: any;
+  idproof: any;
+  constructor(private productService: ProductService, private storage: AngularFireStorage) {
+    this.userData = JSON.parse(localStorage.getItem('token'));
+  }
 
   ngOnInit() {
     this.curlForm = new FormGroup({
@@ -24,7 +34,6 @@ export class SignupComponent implements OnInit {
       cno: new FormControl(null, Validators.required),
       eno: new FormControl(null, Validators.required),
       vtype: new FormControl(null, Validators.required),
-      vcate: new FormControl(null, Validators.required),
       vrc: new FormControl(null, Validators.required),
       idproof: new FormControl(null, Validators.required),
       addressproof: new FormControl(null, Validators.required),
@@ -44,20 +53,119 @@ export class SignupComponent implements OnInit {
     this.curlForm.get('eno').markAsTouched();
     this.curlForm.get('vtype').markAsTouched();
     this.curlForm.get('vrc').markAsTouched();
-    this.curlForm.get('vcate').markAsTouched();
     this.curlForm.get('idproof').markAsTouched();
     this.curlForm.get('addressproof').markAsTouched();
     this.curlForm.get('fasttag').markAsTouched();
   }
   onSubmit() {
+    this.uploadVehicleRC();
     // This value is required
     this.touch();
     if (this.curlForm.valid) {
+
       console.log(this.curlForm.valid, 'valid');
     } else {
       console.log(this.curlForm.valid, 'valid');
     }
 
 
+  }
+  uploadBigFormData() {
+    
+    const payload = {
+      emailId: this.userData.emailId,
+      formData: {
+        firstName: this.curlForm.get('firstname').value,
+        lastName: this.curlForm.get('lastname').value,
+        MobileNumber: this.curlForm.get('mobile').value,
+        emailId: this.userData.emailId,
+        dob: this.curlForm.get('dob').value,
+        fullAddress: this.curlForm.get('address').value,
+        postalPincode: this.curlForm.get('pincode').value,
+        vehicleNumber: this.curlForm.get('vno').value,
+        chassisNumber: this.curlForm.get('cno').value,
+        engineNumber: this.curlForm.get('eno').value,
+        vehicleType: this.curlForm.get('vtype').value,
+        // 'vehicleCategory': 'commercial',
+        vehicleRC: 'linktourl',
+        idProof: 'linktourl',
+        addressProof: 'linktoURL',
+      }
+    };
+    this.uploadVehicleRC().then((urlRC: any) => {
+      this.uploadIdProof().then((urlId: any) => {
+        this.uploadAddressProof().then((urlAddress: any) => {
+          payload.formData.vehicleRC = urlRC.urlRC;
+          payload.formData.idProof = urlId.urlId;
+          payload.formData.addressProof = urlAddress.urlAddress;
+          this.productService.provideBigFormData(payload).subscribe((res:any)=> {
+            console.log("Success");
+          },(err:any)=>{
+            console.log(err,'err');
+          });
+        });
+      });
+    });
+    console.log('sds', this.curlForm.get('addressproof').value);
+  }
+
+  uploadIdProof() {
+    return new Promise((resolved, rejected) => {
+      const file = this.curlForm.get('vrc').value;
+      const filePath = 'usersList' + '/idProof/' + this.userData.emailId.split('@')[0];
+      const ref = this.storage.ref(filePath);
+      const task = ref.put(this.vrc);
+      task.then((res: UploadTaskSnapshot) => {
+        res.ref.getDownloadURL().then((url: any) => {
+          resolved({
+            data: url
+          });
+        });
+      });
+    });
+  }
+  uploadVehicleRC() {
+    return new Promise((resolved, rejected) => {
+      const file = this.curlForm.get('vrc').value;
+      const filePath = 'usersList' + '/vehicleRC/' + this.userData.emailId.split('@')[0];
+      const ref = this.storage.ref(filePath);
+      const task = ref.put(this.vrc);
+      task.then((res: UploadTaskSnapshot) => {
+        res.ref.getDownloadURL().then((url: any) => {
+          resolved({
+            data: url
+          });
+        });
+      });
+    });
+  }
+  uploadAddressProof() {
+    return new Promise((resolved, rejected) => {
+      const file = this.curlForm.get('vrc').value;
+      const filePath = 'usersList' + '/addressProof/' + this.userData.emailId.split('@')[0];
+      const ref = this.storage.ref(filePath);
+      const task = ref.put(this.vrc);
+      task.then((res: UploadTaskSnapshot) => {
+        res.ref.getDownloadURL().then((url: any) => {
+          resolved({
+            data: url
+          });
+        });
+      });
+    });
+  }
+  imageUpload(event, type) {
+    const file = event.target.files[0];
+    switch (type) {
+      case 'vrc':
+        this.vrc = file;
+        break;
+      case 'addressproof':
+        this.addressproof = file;
+        break;
+      case 'idproof':
+        this.idproof = file;
+        break;
+    }
   }
 }

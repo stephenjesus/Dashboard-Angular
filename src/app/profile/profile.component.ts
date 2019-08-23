@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-profile',
@@ -15,14 +16,28 @@ export class ProfileComponent implements OnInit {
   dob;
   pincode;
   address;
-  constructor(private router: Router) {
+  userData: any;
+  constructor(private router: Router, private productService: ProductService) {
     if (localStorage.getItem('token')) {
     } else {
       // this.router.navigate(['/pages/login-boxed']);
     }
-   }
+  }
 
   ngOnInit() {
+    const loc = localStorage.getItem('token');
+    this.userData = JSON.parse(loc);
+    this.productService.getUserDetail({ emailId: this.userData.emailId }).subscribe((res: any) => {
+      const data = res.data;
+      console.log(res);
+      this.firstname = data.firstName;
+      this.lastname = data.lastName;
+      this.email = data.emailId;
+      this.dob = data.dob;
+      this.pincode = data.pincode;
+      this.address = data.address;
+      this.mobile = data.mobile;
+    });
     // this.defaultimg = './assets/images/avatars/2.jpg';
   }
   logoUpload(event) {

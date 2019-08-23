@@ -11,6 +11,8 @@ import { ProductService } from '../../../product.service';
 export class AnalyticsComponent implements OnInit {
 
   heading = 'Analytics Dashboard';
+  defaultimg = `https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png`;
+
   subheading = 'This is an example dashboard created using build-in elements and components.';
   icon = 'pe-7s-graph3 icon-gradient bg-tempting-azure';
   count = 545;

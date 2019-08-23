@@ -12,6 +12,7 @@ export class TopupComponent implements OnInit {
   curlForm: FormGroup;
   userData;
   @ViewChild('growl') growl;
+  isLoading = false;
 
 
   constructor(private router: Router , public productService: ProductService) {
@@ -42,18 +43,8 @@ export class TopupComponent implements OnInit {
   }
 
   onSubmit() {
-    // This value is required
-    // {
-    //   "emailId": "mlvnhari@gmail.com",
-    //   "data": {
-    //   "paymentMethod":"credit_card",
-    //   "bankTxnId":"BANK-Ref",
-    //   "dateOfDeposit":"27/03/2019",
-    //   "amount":22000,
-    //   "remarks":"Requesting for something Bad"
-    //   }
-    //   }
     this.touch();
+    this.isLoading = true;
     if (this.curlForm.valid) {
       const payload = {
         emailId: this.userData.emailId,
@@ -67,21 +58,24 @@ export class TopupComponent implements OnInit {
     };
       this.productService.addTopUpRequest(payload).subscribe((res: any) => {
         if (res && res.status === 200) {
-          this.growl.myFunction({
-            severity: 'success',
-            detail: 'Sucessfully Added!',
-            summary: 'Your Topup Request Added'
-          });
+          this.isLoading = false;
           this.curlForm.reset();
-        } 
+          setTimeout(() => {
+            this.growl.myFunction({
+              severity: 'success',
+              detail: 'Sucessfully Added!',
+              summary: 'Your Topup Request Added'
+            });
+          }, 200);
+        }
       });
     } else {
+      this.isLoading = false;
       this.growl.myFunction({
         severity: 'error',
         detail: 'Validation Failed!',
         summary: 'Enter all required fields'
       });
-      console.log(this.curlForm.valid, 'valid');
     }
   }
 }

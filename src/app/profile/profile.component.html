@@ -1,6 +1,9 @@
 <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url(assets/img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
   <!-- Mask -->
-<div class="container-fluid mt--7">
+  <div class="mainload container-fluid mt--7" *ngIf="isLoading">
+      <div class="loadernews"></div>
+  </div>
+<div class="container-fluid mt--7" *ngIf="!isLoading">
   <div class="row">
     <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0 mobilehide">
       <div class="card card-profile shadow">
@@ -17,7 +20,9 @@
         </div>
         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div class="d-flex justify-content-between">
-            <a href="javascript:void(0)" class="btn btn-sm btn-info mr-4">Connect</a>
+            <a href="http://onlinedevtools.in" *ngIf="status !== 2" class="btn btn-sm btn-info mr-4">Pending</a>
+            <a href="http://onlinedevtools.in" *ngIf="status === 2" class="btn btn-sm btn-info mr-4">Completed</a>
+
           </div>
         </div>
         <div class="card-body pt-0 pt-md-4">
@@ -25,7 +30,7 @@
             <div class="col">
               <div class="card-profile-stats d-flex justify-content-center mt-md-5">
                 <div>
-                  <span class="heading">1050</span>
+                  <span class="heading">{{walletBalance}}</span>
                   <span class="description">Topup</span>
                 </div>
                 <div>
@@ -37,7 +42,7 @@
           </div>
           <div class="text-center">
             <h3 class="h3t">
-              Stephen Prakash
+              {{userName}}
             </h3>
   
             <hr class="my-4" />
@@ -54,7 +59,7 @@
               <h3 class="mb-0 font3">My account</h3>
             </div>
             <div class="col-4 text-right">
-              <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+              <a href="http://onlinedevtools.in" class="btn btn-sm btn-primary">Settings</a>
             </div>
           </div>
         </div>
@@ -128,3 +133,4 @@
     </div>
   </div>
 </div>
+

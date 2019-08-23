@@ -12,7 +12,7 @@
           <div _ngcontent-c5="" class="row">
             <div _ngcontent-c5="" class="col">
               <h5 _ngcontent-c5="" class="card-title text-uppercase text-muted mb-0">Balance</h5><span _ngcontent-c5=""
-                class="h2 font-weight-bold mb-0">500</span>
+                class="h2 font-weight-bold mb-0">{{ AllUser && AllUser.walletBalance ? AllUser.walletBalance : 0   }}</span>
             </div>
             <div _ngcontent-c5="" class="col-auto">
               <div _ngcontent-c5="" class="icon icon-shape bg-danger text-white rounded-circle shadow"><i _ngcontent-c5=""
@@ -91,7 +91,7 @@
       <tr *ngFor="let u of AllUser; let i = index">
         <td class="text-center text-muted" style="width: 80px;"> {{ i +1}}</td>
         <td class="text-center" style="width: 80px;">
-          <img width="40" class="rounded-circle" src="./assets/images/avatars/1.jpg" alt="">
+          <img width="40" class="rounded-circle" src="{{ u.profilePic ? u.profilePic : defaultimg }}" alt="">
         </td>
         <td class="text-center"><a [routerLink]="">{{ u.firstName ?  u.firstName : '-'}}</a></td>
         <td class="text-center"><a [routerLink]=""> {{ u.dob ? u.dob : '-' }}</a></td>

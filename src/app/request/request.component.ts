@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProductService } from '../product.service';
@@ -11,10 +11,12 @@ import { ProductService } from '../product.service';
 export class RequestComponent implements OnInit {
   curlForm: any;
   userData: any;
+  @ViewChild('growl') growl;
+  isLoading = false;
   constructor(private router: Router, private productService: ProductService) {
     if (localStorage.getItem('token')) {
     } else {
-      // this.router.navigate(['/pages/login-boxed']);
+      this.router.navigate(['/pages/login-boxed']);
     }
   }
 
@@ -22,20 +24,18 @@ export class RequestComponent implements OnInit {
     const parseData = localStorage.getItem('token');
     this.userData = JSON.parse(parseData);
     this.curlForm = new FormGroup({
-      miniLightCommercialVehicle: new FormControl(null, Validators.required),
-      // servicetype: new FormControl(null, Validators.required),
+      miniLightCommercialVehicle: new FormControl(null),
       lightCommercialVehicle: new FormControl(null),
-      threeAxleCommercialVehicles: new FormControl(null, Validators.required),
-      busTruck: new FormControl(null, Validators.required),
-      fourToSixAxle: new FormControl(null, Validators.required),
-      sevenPlusAxle: new FormControl(null, Validators.required),
-      HCM_EME: new FormControl(null, Validators.required),
-      remarks: new FormControl(null, Validators.required)
+      threeAxleCommercialVehicles: new FormControl(null),
+      busTruck: new FormControl(null),
+      fourToSixAxle: new FormControl(null),
+      sevenPlusAxle: new FormControl(null),
+      HCM_EME: new FormControl(null),
+      remarks: new FormControl(null)
     });
   }
   touch() {
     this.curlForm.get('miniLightCommercialVehicle').markAsTouched();
-    // this.curlForm.get('servicetype').markAsTouched();
     this.curlForm.get('lightCommercialVehicle').markAsTouched();
     this.curlForm.get('threeAxleCommercialVehicles').markAsTouched();
     this.curlForm.get('fourToSixAxle').markAsTouched();
@@ -46,7 +46,7 @@ export class RequestComponent implements OnInit {
   }
 
   onSubmit() {
-    // This value is required
+    this.isLoading = true;
     this.touch();
     if (this.curlForm.valid) {
       const payload = {
@@ -61,20 +61,22 @@ export class RequestComponent implements OnInit {
           remarks: this.curlForm.get('remarks').value
         }
       };
-      console.log('payload', payload);
       this.productService.addMakeOrder(payload).subscribe((res123: any) => {
-        console.log(res123);
-        this.curlForm.get('miniLightCommercialVehicle').setValue(null);
-        // this.curlForm.get('servicetype').setValue(null);
-        this.curlForm.get('lightCommercialVehicle').setValue(null);
-        this.curlForm.get('threeAxleCommercialVehicles').setValue(null);
-        this.curlForm.get('fourToSixAxle').setValue(null);
-        this.curlForm.get('sevenPlusAxle').setValue(null);
-        this.curlForm.get('HCM_EME').setValue(null);
-        this.curlForm.get('remarks').setValue(null);
+        if (res123) {
+          this.isLoading = false;
+          this.curlForm.reset();
+          setTimeout(() => {
+            this.growl.myFunction({
+              severity: 'success',
+              detail: 'Sucessfully Added!',
+              summary: 'Your Topup Request Added'
+            });
+          }, 200);
+        }
       });
     } else {
-      console.log(this.curlForm.valid, 'valid');
+      this.isLoading = false;
+      console.log(this.curlForm.valid, 'in valid');
     }
   }
 

@@ -18,25 +18,33 @@ export class ProfileComponent implements OnInit {
   pincode;
   address;
   userData;
-
+  isLoading = true;
+  status;
+  walletBalance;
+  userName;
   constructor(private router: Router, private productService: ProductService, private storage: AngularFireStorage) {
     if (localStorage.getItem('token')) {
       this.userData = JSON.parse(localStorage.getItem('item'));
     } else {
-      // this.router.navigate(['/pages/login-boxed']);
+      this.router.navigate(['/pages/login-boxed']);
     }
   }
 
   ngOnInit() {
+    this.isLoading = true;
     const loc = localStorage.getItem('token');
     this.userData = JSON.parse(loc);
     this.productService.getUserDetail({ emailId: this.userData.emailId }).subscribe((res: any) => {
+      this.isLoading = false;
       const data = res.data;
       console.log(res);
       this.firstname = data.firstName;
+      this.status = data.status;
+      this.walletBalance = data.walletBalance;
       this.lastname = data.lastName;
       this.email = data.emailId;
       this.dob = data.dob;
+      this.userName = data.userName;
       this.pincode = data.postalPincode;
       this.address = data.address;
       this.mobile = data.MobileNumber;

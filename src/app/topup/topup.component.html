@@ -1,7 +1,7 @@
 <div class="mainform">
 
     <h3 class="head3"> Request Top Up </h3>
-    <form [formGroup]="curlForm" (ngSubmit)="onSubmit()">
+    <form [formGroup]="curlForm" *ngIf="!isLoading" (ngSubmit)="onSubmit()">
         <div class="coflex">
                 <app-growl-show #growl></app-growl-show>
             <span class="comlabel"> Payment Method <span class="star"> * </span> </span>
@@ -21,14 +21,14 @@
                 <span class="comlabel"> Bank txnid/ Ref No <span class="star"> * </span> </span>
                 <input type="string" formControlName="refno" class="inputbox">
                 <div class="err" *ngIf="curlForm.get('refno').hasError('required') && curlForm.get('refno').touched">
-                    Vehicle Number is required
+                        Bank txnid/ Ref No is required
                 </div>
             </div>
             <div class="innerflex">
                 <span class="comlabel"> Date of Deposit <span class="star"> * </span> </span>
                 <input type="date" formControlName="date" class="inputbox">
                 <div class="err" *ngIf="curlForm.get('date').hasError('required') && curlForm.get('date').touched">
-                    Chassis Number is required
+                        Date of Deposit is required
                 </div>
             </div>
         </div>
@@ -38,14 +38,14 @@
                 <span class="comlabel"> Amount <span class="star"> * </span> </span>
                 <input type="number" formControlName="amount" class="inputbox">
                 <div class="err" *ngIf="curlForm.get('amount').hasError('required') && curlForm.get('amount').touched">
-                    Vehicle Number is required
+                        Amount is required
                 </div>
             </div>
             <div class="innerflex">
                 <span class="comlabel"> Requesting for (Remarks) <span class="star"> * </span> </span>
                 <textarea style="height: 120px;" formControlName="remarks" class="inputbox"> </textarea>
                 <div class="err" *ngIf="curlForm.get('remarks').hasError('required') && curlForm.get('remarks').touched">
-                    Chassis Number is required
+                        Remarks is required
                 </div>
             </div>
         </div>
@@ -53,7 +53,12 @@
         <div class="btndiv">
             <button type="submit" class="topupbtn">REQUEST TOP UP</button>
         </div>
+     
     </form>
+
+    <div class="mainload" *ngIf="isLoading">
+        <div class="loadernews"></div>
+    </div>
 
 
 </div>

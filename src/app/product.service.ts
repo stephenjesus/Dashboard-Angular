@@ -39,4 +39,10 @@ export class ProductService {
   provideBigFormData(payload) {
     return this.http.post(this.api_url + '/provideBigFormData', payload);
   }
+  getPendingTopUps() {
+    return this.http.get(this.api_url + '/getPendingTopUps');
+  }
+  approveTopUp(payload) {
+    return this.http.post(this.api_url+'/approveTopUp',payload);
+  }
 }

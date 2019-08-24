@@ -1,0 +1,65 @@
+.card-div{
+    display: flex;
+    border: 1px solid lightgray;
+    padding: 18px;
+    box-shadow: 0px 4px 12px -5px rgba(0,0,0,0.71);
+    background: white;
+    width: 55%;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+@media (max-width: 767px)
+{
+    .card-div {
+        border: 1px solid lightgray;
+        padding: 18px;
+        box-shadow: 0px 4px 12px -5px rgba(0,0,0,0.71);
+        background: white;
+        width: 100% !important;
+        display: unset !important;
+        border-radius: 5px;
+        margin-bottom: 10px;
+        
+    }
+}
+.flex-1{
+    color: black;
+flex: 1;
+}
+.flex-2{
+    flex: 1;
+    position: relative;
+    color: black;
+}
+.content{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.approve{
+    height: 30px;
+    width: 120px;
+    background: green;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-weight: 600;
+}
+.decline{
+    height: 30px;
+    width: 120px;
+    cursor: pointer;
+    background: white;
+    color: red;
+    border: 1px solid red;
+    border-radius: 3px;
+    font-weight: 600;
+    margin-left: 20px;
+}
+.label-title{
+    color: darkblue;
+    font-weight: 700;
+    font-size: 14px;
+}

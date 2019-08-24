@@ -1,0 +1,35 @@
+<div>
+  <div *ngFor="let u of requestData;" class="card-div">
+    <div class="flex-1">
+      
+    <div>
+        <span class="label-title">Amount</span>: {{u.amount}}
+      </div>
+      <div>
+          <span class="label-title">Email Id</span>: {{u.emailId}}
+      </div>
+      <div>
+          <span class="label-title">Date of Request</span>: {{u.dateOfDeposit}}
+      </div>
+      <div>
+          <span class="label-title">Payment Method</span>: {{u.paymentMethod}}
+      </div>
+      <div>
+          <span class="label-title">Bank txnid/ Ref No</span>: {{u.bankTxnId}}
+      </div>
+    </div>
+
+
+    <div class="flex-2">
+      <div>
+          <span class="label-title">Remarks</span>:<br>
+          {{u.remarks}}
+      </div>
+      <div class="content">
+        <button (click)="approveRequest(u.emailId,u.requestId,1)" class="approve">Approve</button>
+        <button (click)="approveRequest(u.emailId,u.requestId,2)" class="decline">Decline</button>
+
+      </div>
+    </div>
+  </div>
+</div>

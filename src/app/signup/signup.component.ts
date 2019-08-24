@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ProductService } from '../product.service';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -17,6 +17,8 @@ export class SignupComponent implements OnInit {
   vrc: any;
   addressproof: any;
   idproof: any;
+  @ViewChild('growl') growl;
+  isLoading = false;
   constructor(private productService: ProductService, private storage: AngularFireStorage) {
     this.userData = JSON.parse(localStorage.getItem('token'));
   }
@@ -37,7 +39,7 @@ export class SignupComponent implements OnInit {
       vrc: new FormControl(null, Validators.required),
       idproof: new FormControl(null, Validators.required),
       addressproof: new FormControl(null, Validators.required),
-      fasttag: new FormControl(null, Validators.required),
+      // fasttag: new FormControl(null, Validators.required),
     });
   }
   touch() {
@@ -55,14 +57,13 @@ export class SignupComponent implements OnInit {
     this.curlForm.get('vrc').markAsTouched();
     this.curlForm.get('idproof').markAsTouched();
     this.curlForm.get('addressproof').markAsTouched();
-    this.curlForm.get('fasttag').markAsTouched();
+    // this.curlForm.get('fasttag').markAsTouched();
   }
   onSubmit() {
     this.uploadVehicleRC();
     // This value is required
     this.touch();
     if (this.curlForm.valid) {
-
       console.log(this.curlForm.valid, 'valid');
     } else {
       console.log(this.curlForm.valid, 'valid');
@@ -71,7 +72,7 @@ export class SignupComponent implements OnInit {
 
   }
   uploadBigFormData() {
-    
+    this.isLoading = true;
     const payload = {
       emailId: this.userData.emailId,
       formData: {
@@ -86,26 +87,45 @@ export class SignupComponent implements OnInit {
         chassisNumber: this.curlForm.get('cno').value,
         engineNumber: this.curlForm.get('eno').value,
         vehicleType: this.curlForm.get('vtype').value,
-        // 'vehicleCategory': 'commercial',
         vehicleRC: 'linktourl',
         idProof: 'linktourl',
         addressProof: 'linktoURL',
       }
     };
-    this.uploadVehicleRC().then((urlRC: any) => {
-      this.uploadIdProof().then((urlId: any) => {
-        this.uploadAddressProof().then((urlAddress: any) => {
-          payload.formData.vehicleRC = urlRC.urlRC;
-          payload.formData.idProof = urlId.urlId;
-          payload.formData.addressProof = urlAddress.urlAddress;
-          this.productService.provideBigFormData(payload).subscribe((res:any)=> {
-            console.log("Success");
-          },(err:any)=>{
-            console.log(err,'err');
+    if (this.curlForm.valid) {
+      this.uploadVehicleRC().then((urlRC: any) => {
+        this.uploadIdProof().then((urlId: any) => {
+          this.uploadAddressProof().then((urlAddress: any) => {
+            payload.formData.vehicleRC = urlRC.urlRC;
+            payload.formData.idProof = urlId.urlId;
+            payload.formData.addressProof = urlAddress.urlAddress;
+            this.productService.provideBigFormData(payload).subscribe((res: any) => {
+              console.log('Success');
+              this.isLoading = false;
+              this.curlForm.reset();
+              setTimeout(() => {
+                this.growl.myFunction({
+                  severity: 'success',
+                  detail: 'Sucessfully Added!',
+                  summary: 'Your Topup Request Added'
+                });
+              }, 200);
+            }, (err: any) => {
+              this.isLoading = false;
+              console.log(err, 'err');
+            });
           });
         });
       });
-    });
+    } else {
+      this.isLoading = false;
+      this.growl.myFunction({
+        severity: 'error',
+        detail: 'Validation Failed!',
+        summary: 'Enter all required fields'
+      });
+    }
+ 
     console.log('sds', this.curlForm.get('addressproof').value);
   }
 

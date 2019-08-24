@@ -1,6 +1,8 @@
 <div>
   <h3 class="head"> New Registration Form </h3>
   <form [formGroup]="curlForm" (ngSubmit)="uploadBigFormData()">
+      <app-growl-show #growl></app-growl-show>
+
     <div class="per-div">
       <p class="commar maintitle"> Personal Information </p>
       <div class="flex commar">
@@ -165,12 +167,12 @@
           </div>
         </div> -->
       </div>
-      <div class="textcenter">
+      <div class="textcenter" *ngIf="!isLoading">
         <button type="submit" class="regbtn"> Register </button>
-        <!-- <button type="submit" class="regbtn"> -->
-          <!-- <a class="signin" routerLink="/pages/login-boxed">Sign in</a> -->
-        <!-- </button> -->
       </div>
+      <div class="mainload container-fluid mt--7" *ngIf="isLoading">
+        <div class="loadernews"></div>
+    </div>
     </div>
   </form>
 

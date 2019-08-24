@@ -69,6 +69,13 @@
 
 </div>
 
+<div>
+  <input class="inputclass" type="string" [(ngModel)]="email" placeholder=""> <br><br>
+ <button class="verify" (click)="verify('v')">Verify</button> <br><br>
+ <button class="verify" (click)="verify('r')">Reject</button> <br>
+</div>
+<br>
+<app-growl-show #growl></app-growl-show>
 
 <div class="main-card mb-3 card">
   <div class="card-header">
@@ -85,6 +92,7 @@
         <th class="text-center">Email</th>
         <th class="text-center">Mobile Number</th>
         <th class="text-center">Wallet balance</th>
+        <th class="text-center">Status</th>
       </tr>
       </thead>
       <tbody>
@@ -106,6 +114,12 @@
         </td>
         <td class="text-center">
             {{u.walletBalance ? u.walletBalance : 0}}
+          </td>
+          <td class="text-center">
+            <span *ngIf="u.status === 0"> - </span>
+            <span *ngIf="u.status === 1"> Pending </span>
+            <span *ngIf="u.status === 2"> Verifed </span>
+            <span *ngIf="u.status === 3"> Reject </span>
           </td>
       </tr>
       </tbody>

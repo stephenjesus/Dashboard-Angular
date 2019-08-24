@@ -18,6 +18,9 @@ export class ProductService {
   getAllUsers() {
     return this.http.get(this.api_url + `/getAllUser`);
   }
+  approveUserRequest(payload) {
+    return this.http.post(this.api_url + `/approveUserRequest` , payload);
+  }
   login(payload) {
     return this.http.post(this.api_url + `/logIn`, payload);
   }

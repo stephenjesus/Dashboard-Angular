@@ -12,6 +12,22 @@
     font-size: 1.25rem;
     font-weight: 600!important;
 } */
+.inputclass {
+    height: 35px;
+    padding-left: 10px;
+    width: 228px;
+}
+.verify {
+    width: 120px;
+    height: 30px;
+    font-size: 13px;
+    border: none;
+    border-radius: 3px;
+    background-color: #337ab7;
+    color: #fff;
+    cursor: pointer;
+
+}
 .matbot6 {
     margin-bottom: 6%;
 }

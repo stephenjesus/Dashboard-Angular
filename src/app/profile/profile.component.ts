@@ -9,7 +9,7 @@ import { UploadTaskSnapshot } from '@angular/fire/storage/interfaces';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  defaultimg = '`https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png`';
+  defaultimg = `https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png`;
   firstname;
   lastname;
   email;
@@ -37,9 +37,9 @@ export class ProfileComponent implements OnInit {
     this.productService.getUserDetail({ emailId: this.userData.emailId }).subscribe((res: any) => {
       this.isLoading = false;
       const data = res.data;
-      console.log(res);
       this.firstname = data.firstName;
       this.status = data.status;
+
       this.walletBalance = data.walletBalance;
       this.lastname = data.lastName;
       this.email = data.emailId;
@@ -48,9 +48,8 @@ export class ProfileComponent implements OnInit {
       this.pincode = data.postalPincode;
       this.address = data.address;
       this.mobile = data.MobileNumber;
-      this.defaultimg = data.profilePic;
+      this.defaultimg = data.profilePic ? data.profilePic : this.defaultimg;
     });
-    // this.defaultimg = './assets/images/avatars/2.jpg';
   }
   logoUpload(event) {
     if (event.target.files && event.target.files[0]) {
@@ -60,7 +59,6 @@ export class ProfileComponent implements OnInit {
       const task = ref.put(file);
       task.then((a: UploadTaskSnapshot) => {
         a.ref.getDownloadURL().then((value: any) => {
-          console.log(value);
           this.defaultimg = value;
           const payload = {
             emailId: this.userData.emailId,

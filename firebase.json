@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/architectui-angular-free/",
+    "public": "dist/architectui-angular-free",
     "ignore": [
       "firebase.json",
       "**/.*",

@@ -58,7 +58,7 @@ export class RequestComponent implements OnInit {
           fourToSixAxle: this.curlForm.get('fourToSixAxle').value,
           sevenPlusAxle: this.curlForm.get('sevenPlusAxle').value,
           HCM_EME: this.curlForm.get('HCM_EME').value,
-          remarks: this.curlForm.get('remarks').value
+          remarks: this.curlForm.get('remarks').valuez
         }
       };
       this.productService.addMakeOrder(payload).subscribe((res123: any) => {

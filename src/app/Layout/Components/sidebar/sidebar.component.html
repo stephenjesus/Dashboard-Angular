@@ -71,11 +71,23 @@
                 <span class="vsm-title">Topup</span>
               </a>
             </div>
+            <div *ngIf="isAdmin" class="vsm-item">
+              <a routerLink="/view-all-topup-requests" routerLinkActive="active-item" class="vsm-link">
+                <i class="vsm-icon pe-7s-graph2"></i>
+                <span class="vsm-title">View Topup Request</span>
+              </a>
+            </div>
             <div class="vsm-header">Order</div>
             <div class="vsm-item">
               <a routerLink="/request" routerLinkActive="active-item" class="vsm-link">
                 <i class="vsm-icon pe-7s-graph2"></i>
                 <span class="vsm-title">Order</span>
+              </a>
+            </div>
+            <div *ngIf="isAdmin" class="vsm-item">
+              <a routerLink="/view-all-order-requests" routerLinkActive="active-item" class="vsm-link">
+                <i class="vsm-icon pe-7s-graph2"></i>
+                <span class="vsm-title">View All Orders</span>
               </a>
             </div>
           </div>

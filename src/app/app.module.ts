@@ -94,6 +94,8 @@ import { AngularFireModule } from '@angular/fire';
 
 import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
+import { ViewAllTopupRequestsComponent } from './view-all-topup-requests/view-all-topup-requests.component';
+import { ViewAllOrderRequestsComponent } from './view-all-order-requests/view-all-order-requests.component';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -166,6 +168,8 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ProfileComponent,
     SignupComponent,
     UserdashboardComponent,
+    ViewAllTopupRequestsComponent,
+    ViewAllOrderRequestsComponent,
   ],
   imports: [
     BrowserModule,

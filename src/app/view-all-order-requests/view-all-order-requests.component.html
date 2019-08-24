@@ -1,3 +1,47 @@
-<p>
-  view-all-order-requests works!
-</p>
+<div>
+  <div *ngFor="let u of requestData;" class="card-div">
+    <div class="flex-1">
+        
+        <div>
+            <span class="label-title">User Email</span>: {{u.emailId}}
+          </div>
+      <div>
+        <span class="label-title">Mini Light Commercial Vehicle</span>: {{u.miniLightCommercialVehicle}}
+      </div>
+      <div>
+        <span class="label-title">Light Commercial Vehicle</span>: {{u.ightCommercialVehicle}}
+      </div>
+      <div>
+        <span class="label-title">Three Axle Commercial Vehicles</span>: {{u.threeAxleCommercialVehicles}}
+      </div>
+      <div>
+        <span class="label-title">Bus/Truck</span>: {{u.busTruck}}
+      </div>
+      <div>
+        <span class="label-title">4 to 6 Axle</span>: {{u.fourToSixAxle}}
+      </div>
+      <div>
+        <span class="label-title"> 7 or more Axle</span>: {{u.sevenPlusAxle}}
+      </div>
+      <div>
+        <span class="label-title">Heavy Construction Machinery (HCM) / Earth Moving Equipment (EME)</span>: {{u.HCM_EME}}
+      </div>
+      <div>
+          <span class="label-title">Remarks</span>: {{u.remarks}}
+        </div>
+    </div>
+
+<!-- 
+    <div class="flex-2">
+      <div>
+        <span class="label-title">Remarks</span>:<br>
+        {{u.remarks}}
+      </div>
+      <div class="content">
+        <button (click)="approveRequest(u.emailId,u.requestId,1)" class="approve">Approve</button>
+        <button (click)="approveRequest(u.emailId,u.requestId,2)" class="decline">Decline</button>
+
+      </div>
+    </div> -->
+  </div>
+</div>

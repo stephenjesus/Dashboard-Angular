@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductService } from '../product.service';
 
 @Component({
   selector: 'app-view-all-order-requests',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewAllOrderRequestsComponent implements OnInit {
 
-  constructor() { }
+  requestData = [];
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
+    this.requestData = [{}, {}, {}];
+    this.refresh();
   }
+  refresh(){
+    this.productService.getOrderDetails().subscribe((res: any) => {
+      this.requestData = res.data;
+    })
+  } 
 
 }

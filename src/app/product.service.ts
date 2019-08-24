@@ -48,4 +48,7 @@ export class ProductService {
   approveTopUp(payload) {
     return this.http.post(this.api_url+'/approveTopUp',payload);
   }
+  getOrderDetails(){
+    return this.http.post(this.api_url+'/getOrderDetails',{});
+  }
 }

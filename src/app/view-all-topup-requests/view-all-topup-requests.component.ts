@@ -9,13 +9,15 @@ import { ProductService } from '../product.service';
 export class ViewAllTopupRequestsComponent implements OnInit {
   requestData = [];
   constructor(private productService: ProductService) { }
-
+  isLoading = false;
   ngOnInit() {
     this.requestData = [{}, {}, {}];
     this.refresh();
   }
   refresh() {
+    this.isLoading = true;
     this.productService.getPendingTopUps().subscribe((rs: any) => {
+      this.isLoading = false;
       this.requestData = rs.data;
     });
   }
@@ -25,7 +27,9 @@ export class ViewAllTopupRequestsComponent implements OnInit {
       requestId,
       status
     };
+    this.isLoading = true;
     this.productService.approveTopUp(payload).subscribe((res: any) => {
+    this.isLoading = false;
     this.refresh();
     });
   }

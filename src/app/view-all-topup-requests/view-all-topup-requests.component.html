@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!isLoading">
   <div *ngFor="let u of requestData;" class="card-div">
     <div class="flex-1">
       
@@ -32,4 +32,9 @@
       </div>
     </div>
   </div>
+</div>
+
+<app-growl-show #growl></app-growl-show>
+<div class="mainload" *ngIf="isLoading">
+    <div class="loadernews"></div>
 </div>

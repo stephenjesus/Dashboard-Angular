@@ -13,9 +13,15 @@ export class UserdashboardComponent implements OnInit {
   userData;
   AllUser;
   isLoading = true;
+  formStatus = 'Not Submitted';
   constructor(private router: Router , public productService: ProductService) {
     const parseData = localStorage.getItem('token');
     this.userData = JSON.parse(parseData);
+    if (this.userData && this.userData.status === 1) {
+      this.formStatus = 'Pending';
+    } else if (this.userData && this.userData.status === 1) {
+      this.formStatus = 'Completed';
+    }
   }
 
   ngOnInit() {

@@ -96,9 +96,9 @@ export class SignupComponent implements OnInit {
       this.uploadVehicleRC().then((urlRC: any) => {
         this.uploadIdProof().then((urlId: any) => {
           this.uploadAddressProof().then((urlAddress: any) => {
-            payload.formData.vehicleRC = urlRC.urlRC;
-            payload.formData.idProof = urlId.urlId;
-            payload.formData.addressProof = urlAddress.urlAddress;
+            payload.formData.vehicleRC = urlRC.data;
+            payload.formData.idProof = urlId.data;
+            payload.formData.addressProof = urlAddress.data;
             this.productService.provideBigFormData(payload).subscribe((res: any) => {
               console.log('Success');
               this.isLoading = false;
@@ -106,8 +106,8 @@ export class SignupComponent implements OnInit {
               setTimeout(() => {
                 this.growl.myFunction({
                   severity: 'success',
-                  detail: 'Sucessfully Added!',
-                  summary: 'Your Topup Request Added'
+                  detail: 'Successfully!',
+                  summary: 'Your Form Updated'
                 });
               }, 200);
             }, (err: any) => {

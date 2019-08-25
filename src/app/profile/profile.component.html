@@ -3,6 +3,8 @@
   <div class="mainload container-fluid mt--7" *ngIf="isLoading">
       <div class="loadernews"></div>
   </div>
+  <app-growl-show #growl></app-growl-show>
+
 <div class="container-fluid mt--7" *ngIf="!isLoading">
   <div class="row">
     <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0 mobilehide">
@@ -20,8 +22,8 @@
         </div>
         <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
           <div class="d-flex justify-content-between">
-            <a href="http://onlinedevtools.in" *ngIf="status !== 2" class="btn btn-sm btn-info mr-4">Pending</a>
-            <a href="http://onlinedevtools.in" *ngIf="status === 2" class="btn btn-sm btn-info mr-4">Completed</a>
+            <a *ngIf="status !== 2" class="btn btn-sm btn-info mr-4">Pending</a>
+            <a *ngIf="status === 2" class="btn btn-sm btn-info mr-4">Completed</a>
 
           </div>
         </div>
@@ -33,10 +35,10 @@
                   <span class="heading">{{walletBalance}}</span>
                   <span class="description">Topup</span>
                 </div>
-                <div>
+                <!-- <div>
                   <span class="heading">10</span>
                   <span class="description">Request</span>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>
@@ -59,7 +61,7 @@
               <h3 class="mb-0 font3">My account</h3>
             </div>
             <div class="col-4 text-right">
-              <a href="http://onlinedevtools.in" class="btn btn-sm btn-primary">Settings</a>
+              <a class="btn btn-sm btn-primary">Settings</a>
             </div>
           </div>
         </div>
@@ -88,7 +90,7 @@
                 <div class="col-lg-6">
                   <div class="form-group">
                     <label class="form-control-label" for="input-email">Email</label>
-                    <input [ngModelOptions]="{standalone: true}" type="email" id="input-email" class="form-control form-control-alternative" [(ngModel)]="email" placeholder="jesse@example.com">
+                    <input [ngModelOptions]="{standalone: true}" type="email" disabled id="input-email" class="form-control form-control-alternative" [(ngModel)]="email" placeholder="jesse@example.com">
                   </div>
                 </div>
                 <div class="col-lg-6">
@@ -103,7 +105,7 @@
                   <div class="col-lg-6">
                     <div class="form-group">
                       <label class="form-control-label" for="input-email">D.O.B</label>
-                      <input [ngModelOptions]="{standalone: true}" type="text" disabled [(ngModel)]="dob" id="input-email" class="form-control form-control-alternative" placeholder="D.O.B">
+                      <input [ngModelOptions]="{standalone: true}" type="text"  [(ngModel)]="dob" id="input-email" class="form-control form-control-alternative" placeholder="D.O.B">
                     </div>
                   </div>
                   <div class="col-lg-6">

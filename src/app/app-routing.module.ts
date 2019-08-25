@@ -64,7 +64,7 @@ const routes: Routes = [
       { path: 'topup', component: TopupComponent, data: { extraParameter: 'dashboardsMenu' } },
       { path: 'profile', component: ProfileComponent, data: { extraParameter: 'dashboardsMenu' } },
       { path: 'request', component: RequestComponent, data: { extraParameter: 'dashboardsMenu' } },
-      { path: 'signup', component: SignupComponent, data: { extraParameter: 'dashboardsMenu' } },
+      { path: 'Regform', component: SignupComponent, data: { extraParameter: 'dashboardsMenu' } },
       { path: 'userdashboard', component: UserdashboardComponent, data: { extraParameter: 'dashboardsMenu' } },
       { path: 'view-all-topup-requests', component: ViewAllTopupRequestsComponent,data: { extraParameter: 'dashboardsMenu' } },
       { path: 'view-all-order-requests', component: ViewAllOrderRequestsComponent,data: { extraParameter: 'dashboardsMenu' } },

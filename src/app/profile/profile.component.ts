@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductService } from '../product.service';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   status;
   walletBalance;
   userName;
+  @ViewChild('growl') growl;
   constructor(private router: Router, private productService: ProductService, private storage: AngularFireStorage) {
     if (localStorage.getItem('token')) {
       this.userData = JSON.parse(localStorage.getItem('item'));
@@ -37,7 +38,9 @@ export class ProfileComponent implements OnInit {
     this.productService.getUserDetail({ emailId: this.userData.emailId }).subscribe((res: any) => {
       this.isLoading = false;
       const data = res.data;
-      this.firstname = data.firstName;
+      if (data && data.firstName) {
+        this.firstname = data.firstName;
+      }
       this.status = data.status;
 
       this.walletBalance = data.walletBalance;
@@ -92,7 +95,15 @@ export class ProfileComponent implements OnInit {
       }
     };
     this.productService.updateUserProfile(payload).subscribe((data: any) => {
-
+      if (data && data.success) {
+        setTimeout(() => {
+          this.growl.myFunction({
+            severity: 'success',
+            detail: 'Successfully',
+            summary: 'Your Profile Updated'
+          });
+        }, 200);
+      }
     });
   }
 

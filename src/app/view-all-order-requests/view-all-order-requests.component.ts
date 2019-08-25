@@ -12,13 +12,13 @@ export class ViewAllOrderRequestsComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.requestData = [{}, {}, {}];
+    this.requestData = [];
     this.refresh();
   }
-  refresh(){
+  refresh() {
     this.productService.getOrderDetails().subscribe((res: any) => {
       this.requestData = res.data;
-    })
-  } 
+    });
+  }
 
 }

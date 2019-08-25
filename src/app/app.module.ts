@@ -203,7 +203,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
       // DEFAULT_DROPZONE_CONFIG,
     },
     ConfigActions,
-    { provide: StorageBucket, useValue: 'online-management-a7e84.appspot.com' }
+    { provide: StorageBucket, useValue: 'fastag-502e4.appspot.com' }
   ],
   bootstrap: [AppComponent]
 })

@@ -9,7 +9,7 @@ import { ProductService } from '../../../product.service';
   styleUrls: ['./analytics.css']
 })
 export class AnalyticsComponent implements OnInit {
-
+  amount = 0;
   heading = 'Analytics Dashboard';
   @ViewChild('growl') growl;
   defaultimg = `https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png`;
@@ -41,12 +41,23 @@ constructor(private router: Router , public productService: ProductService) {
     });
   }
   verify(type) {
+
     let payload;
     if (type === 'v') {
-       payload = {
-        emailId : this.email,
-        status : 2
-      };
+      if (this.amount) {
+        payload = {
+          emailId: this.email,
+          status: 2,
+          walletBalance: this.amount
+        };
+      } else {
+        this.growl.myFunction({
+          severity: 'error',
+          detail: 'Failed',
+          summary: 'Enter valid amount'
+        });
+        return;
+      }
     } else if (type === 'r') {
        payload = {
         emailId : this.email,
@@ -71,11 +82,19 @@ constructor(private router: Router , public productService: ProductService) {
           }
           this.getall();
         } else {
-          this.growl.myFunction({
-            severity: 'error',
-            detail: 'User not exists!',
-            summary: 'User not found'
-          });
+          if (res.message === 'Low Balance') {
+            this.growl.myFunction({
+              severity: 'error',
+              detail: 'Check the balance',
+              summary: 'Low Balance'
+            });
+          } else {
+            this.growl.myFunction({
+              severity: 'error',
+              detail: 'User not exists!',
+              summary: 'User not found'
+            });
+          }
         }
       });
     }
